@@ -1,0 +1,194 @@
+{% extends 'Voley/plantilla-back.html' %}
+
+{% block header %}Administar Torneo: {{ torneo.nombre }}{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block principal %}
+<div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Datos Torneo
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+
+                        <div>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>Nombre</td>
+                                    <td>{{ torneo.nombre }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Direccion</td>
+                                    <td>{{ torneo.direccion }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Localidad</td>
+                                    <td>{{ torneo.localidad }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Telefono</td>
+                                    <td>{{ torneo.telefono }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Fecha Inicio</td>
+                                    <td>{{ torneo.fechaInicio }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Vigente</td>
+                                    <td>{{ torneo.activo }}</td>
+                                </tr>
+                            </table>
+                            <a href="{% url 'editarTorneo' torneo.pk %}" class="btn btn-warning">Editar</a>
+                        </div>
+
+
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+<div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Equipos
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+
+                        <div>
+                        {% if torneo.equipos.all %}
+                            <table class="table table-bordered">
+                            {% for e in torneo.equipos.all %}
+
+                                <tr>
+                                    <td>{{ e.nombreEquipo }}</td>
+                                </tr>
+
+
+                            {% endfor %}
+                            </table>
+                        {% else %}
+                            <p>NO existen equipos en este TORNEO</p>
+                        {% endif %}
+
+                        <a href="{% url 'agregarEquipoTorneo' torneo.pk %}" class="btn btn-primary">Agregar Equipo</a>
+
+                        </div>
+
+
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+
+<div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Fechas
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+
+                        <div>
+                        {% if fechas %}
+                            <table class="table table-bordered">
+
+                            {% for f in fechas %}
+
+                                <tr>
+                                    <td>{{ f.nombreFecha }}</td>
+                                    <td><a href="{% url 'fecha_admin' f.pk %}" class="btn btn-default">Editar</a></td>
+                                </tr>
+
+
+                            {% endfor %}
+
+                            </table>
+                        {% else %}
+                            <p>NO existen fechas en este TORNEO</p>
+                        {% endif %}
+                        <a href="{% url 'fecha_nueva' torneo.pk %}" class="btn btn-primary">Nueva Fecha</a>
+                        </div>
+
+
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+<div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Tabla Posiciones
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+
+                        <div>
+                            {% if posiciones %}
+                            <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Equipo</th>
+                                    <th>Jugados</th>
+                                    <th>P. Ganados</th>
+                                    <th>P. Perd. a 1</th>
+                                    <th>P. Perd. a 0</th>
+                                    <th>Set Favor</th>
+                                    <th>Set Contra</th>
+                                    <th>Coef. Set</th>
+                                    <th>Puntos</th>
+                                </tr>
+                                </thead>
+                            <tbody>
+                            {% for p in posiciones %}
+
+                                <tr>
+                                    <td>{{ p.equipo.nombreEquipo }}</td>
+                                    <td>{{ p.pj }}</td>
+                                    <td>{{ p.pg }}</td>
+                                    <td>{{ p.ppa1 }}</td>
+                                    <td>{{ p.ppa0 }}</td>
+                                    <td>{{ p.gf }}</td>
+                                    <td>{{ p.gc }}</td>
+                                    <td>{{ p.coefSet }}</td>
+                                    <td>{{ p.puntos }}</td>
+                                </tr>
+
+
+                            {% endfor %}
+                            </tbody>
+                            </table>
+                        {% else %}
+                            <p>NO existen equipos en este TORNEO para mostrar la tabla</p>
+                        {% endif %}
+                        </div>
+
+
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+{% endblock %}
+
+{% block js %}
+
+
+{% endblock %}

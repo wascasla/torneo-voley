@@ -1,0 +1,26 @@
+{% extends 'Voley/plantilla-front.html' %}
+
+{% block logo %}
+
+{% endblock %}
+
+{% block principal %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="section-heading">Tabla de Posiciones</h1>
+            <div class="panel panel-primary">
+                <div class="panel-heading">Torneo tanto</div>
+                <div class="panel-body">
+                {% if tabla %}
+                si hay datos
+                {% endif %}
+                    {% for pos in tabla %}
+                        <p>{{ pos }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,158 @@
+{% extends 'Voley/plantilla-back.html' %}
+
+{% block header %}Actualizar Partido{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block principal %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Actualizar Partido
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+
+
+                    {% if errores %}
+                        <div class="alert alert-danger" role="alert">
+                            Corrija los siguientes errores:
+                            <ol>
+                                {% for error in errores %}
+                                    <li><strong>{{ error|escape }}</strong></li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    {% endif %}
+
+                    {% if mensaje %}
+                        <div class="alert alert-success" role="alert">
+                            <ol>
+                                {% for msj in mensaje %}
+                                    <li><strong>{{ msj|escape }}</strong></li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    {% endif %}
+
+                    <form class="form-horizontal" name=formul method="POST"
+                          action="{% url 'actualizar_partido' partido.pk %}">
+                        {% csrf_token %}
+
+
+
+
+                        <div class="col-lg-6">
+
+                            <div class="form-group">
+                                <label for="fechaPartido" class="col-sm-2 control-label">Fecha</label>
+
+                                <div class="col-sm-10">
+                                    <input type="date" class="form-control" name="fechaPartido" id="fechaPartido" placeholder="fecha" value="{{ fechaPartido }}" >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="horaPartido" class="col-sm-2 control-label">Hora</label>
+
+                                <div class="col-sm-10">
+                                    <input type="time" class="form-control" name="horaPartido" id="horaPartido" placeholder="hora" value="{{ hora }}">
+                                </div>
+                            </div>
+
+                             <div class="form-group">
+                                <label for="datosPartido" class="col-sm-2 control-label">Datos Adicionales</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="datosPartido" id="datosPartido" placeholder="datos" value="{{ datosPartido }}">
+                                </div>
+                            </div>
+
+                            <label for="equipo" class="col-sm-2 control-label">Equipo Local:</label>
+
+                            <div class="input-group">
+
+                                <input type="text" class="form-control" name=equipo placeholder="Buscar equipo..." value="{{ equipoLocal.nombreEquipo }}">
+                                <input type="hidden" id="hequipo" name="hequipo" value="{{ equipoLocal.pk }}"/>
+      <span class="input-group-btn">
+        <button class="btn btn-default" onclick="buscarEquipo()" type="button">Buscar!!</button>
+      </span>
+                            </div>
+                            <!-- /input-group -->
+
+                            <div class="form-group">
+                                <label for="golesLocal" class="col-sm-2 control-label">Set Local</label>
+
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" name="golesLocal" id="golesLocal" placeholder="golesLocal" value="{{ golesLocal }}">
+                                </div>
+                            </div>
+
+
+
+                            <label for="equipo1" class="col-sm-2 control-label">Equipo Visitante:</label>
+
+                            <div class="input-group">
+
+                                <input type="text" class="form-control" name=equipo1 placeholder="Buscar equipo..." value="{{ equipoVisitante.nombreEquipo }}">
+                                <input type="hidden" id="hequipo1" name="hequipo1" value="{{ equipoVisitante.pk }}"/>
+      <span class="input-group-btn">
+        <button class="btn btn-default" onclick="buscarEquipo1()" type="button">Buscar!!</button>
+      </span>
+                            </div>
+                            <!-- /input-group -->
+
+                            <div class="form-group">
+                                <label for="golesVisitante" class="col-sm-2 control-label">Set Local</label>
+
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" name="golesVisitante" id="golesVisitante" placeholder="gol" value="{{ golesVisitante }}">
+                                </div>
+                            </div>
+
+
+                            <button type="submit" class="save btn btn-success">Actualizar</button>
+                            <a href="{% url 'fecha_admin' partido.fecha.pk %}" class="btn btn-warning">Cancelar</a>
+                        </div>
+                        <!-- /.col-lg-6 -->
+
+
+
+                    </form>
+
+
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+
+
+    </div>
+    <!-- /.row -->
+{% endblock %}
+
+{% block js %}
+    <script>
+        var miPopup
+        var miPopup1
+        function buscarEquipo() {
+            miPopup = window.open("/buscarEquipo", "miwin", "width=1000,height=800,scrollbars=yes")
+            miPopup.focus()
+        }
+
+        function buscarEquipo1() {
+            miPopup1 = window.open("/buscarEquipo1", "miwin", "width=1000,height=800,scrollbars=yes")
+            miPopup1.focus()
+        }
+    </script>
+
+{% endblock %}
+
+{% block js2 %}
+
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends 'Voley/plantilla-back.html' %}
+
+{% block header %}Administar Fecha: {{ fecha.nombreFecha }}{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block principal %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+
+                {% if hayErrores %}
+    <div class="alert alert-danger" role="alert">
+      Se produjeron los siguientes errores:
+        <ol>
+        {% for error in errores %}
+            <li><strong>{{ error|escape }}</strong></li>
+        {% endfor %}
+        </ol>
+    </div>
+    {% endif %}
+
+
+                <div class="panel-heading">
+                    Datos Fecha
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tr>
+                                <td>Fecha</td>
+                                <td>{{ fecha.nombreFecha }}</td>
+                            </tr>
+                            <tr>
+                                <td>datosJornada</td>
+                                <td>{{ fecha.datosJornada }}</td>
+                            </tr>
+                            <tr>
+                                <td>Torneo</td>
+                                <td>{{ fecha.torneo.nombre }}</td>
+                            </tr>
+                        </table>
+                        <button type="button" class="btn btn-default">Editar</button>
+                        <a href="{% url 'fecha_delete' fecha.pk %}" class="btn btn-danger" onclick="return confirm('¿Estás seguro que desea eliminar la Fecha?')">Eliminar</a>
+                        <a href="{% url 'adminTorneo' fecha.torneo.pk %}" class="btn btn-warning">Volver</a>
+                    </div>
+
+
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Partidos de la Fecha
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+
+                    <div class="table-responsive">
+                        {% if partidos %}
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                    <th>Equipo Local</th>
+                                    <th>set Local</th>
+                                    <th>Set Visitante</th>
+                                    <th>Equipo Visitante</th>
+                                    <th>Fecha</th>
+                                    <th>Cargado</th>
+                                    <th>Editar</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for p in partidos %}
+                                    <tr>
+                                        <td>{{ p.fechaPartido }}</td>
+                                        <td>{{ p.horaPartido }}</td>
+                                        <td>{{ p.local.nombreEquipo }}</td>
+                                        <td>{{ p.golLocal }}</td>
+                                        <td>{{ p.golVisitante }}</td>
+                                        <td>{{ p.visitante.nombreEquipo }}</td>
+                                        <td>{{ p.fecha.nombreFecha }}</td>
+                                        <td>{{ p.cargado }}</td>
+                                        <td><a href="{% url 'actualizar_partido' p.pk %}" class="btn btn-default">Editar</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            <p>NO existen Partidos en esta FECHA</p>
+                        {% endif %}
+
+                        <a href="{% url 'nuevo_partido' fecha.pk %}" class="btn btn-primary">Nuevo Partido</a>
+                    </div>
+
+
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+
+
+    </div>
+    <!-- /.row -->
+{% endblock %}
+
+{% block js %}
+
+
+{% endblock %}

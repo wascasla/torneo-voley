@@ -1,0 +1,64 @@
+{% extends 'Voley/plantilla-front.html' %}
+
+{% block logo %}
+
+{% endblock %}
+
+{% block principal %}
+
+<div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Tabla Posiciones
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+
+                        <div>
+                            {% if posiciones %}
+                            <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Equipo</th>
+                                    <th>Jugados</th>
+                                    <th>P. Ganados</th>
+                                    <th>P. Perd. a 1</th>
+                                    <th>P. Perd. a 0</th>
+                                    <th>Set Favor</th>
+                                    <th>Set Contra</th>
+                                    <th>Coef. Set</th>
+                                    <th>Puntos</th>
+                                </tr>
+                                </thead>
+                            <tbody>
+                            {% for p in posiciones %}
+
+                                <tr>
+                                    <td>{{ p.equipo.nombreEquipo }}</td>
+                                    <td>{{ p.pj }}</td>
+                                    <td>{{ p.pg }}</td>
+                                    <td>{{ p.ppa1 }}</td>
+                                    <td>{{ p.ppa0 }}</td>
+                                    <td>{{ p.gf }}</td>
+                                    <td>{{ p.gc }}</td>
+                                    <td>{{ p.coefSet }}</td>
+                                    <td>{{ p.puntos }}</td>
+                                </tr>
+
+
+                            {% endfor %}
+                            </tbody>
+                            </table>
+                        {% else %}
+                            <p>NO existen equipos en este TORNEO para mostrar la tabla</p>
+                        {% endif %}
+                        </div>
+
+
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+{% endblock %}

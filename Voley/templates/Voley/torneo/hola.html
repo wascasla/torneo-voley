@@ -1,0 +1,44 @@
+{% extends 'Voley/plantilla-front.html' %}
+
+{% block logo %}
+
+{% endblock %}
+
+{% block principal %}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="section-heading">Tabla de Posiciones</h1>
+            <div class="panel panel-primary">
+                <div class="panel-heading">Torneo tanto</div>
+                <div class="panel-body">
+                    <div class="bs-example" data-example-id="bordered-table">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr> <th>Equipo</th> <th>Partido Jugados</th> </tr>
+                            </thead>
+                            <tbody>
+                            {% for pos in tabla %}
+                            <tr>
+                                <th scope="row">{{ pos }}</th>
+                                <td>{{ pos }}</td>
+                            </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                    {% for pos in tabla %}
+
+                        {% for p in pos %}
+                        <p>{{ p }}</p>
+
+                        {% endfor %}
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

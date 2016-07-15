@@ -1,0 +1,78 @@
+{% extends 'Voley/plantilla-back.html' %}
+
+{% block header %}Agregar nuevo Fecha{% endblock %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block principal %}
+<div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Agregar Nueva Fecha
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+
+
+    {% if errores %}
+    <div class="alert alert-danger" role="alert">
+      Corrija los siguientes errores:
+        <ol>
+          fecha: {{fecha}}
+        {% for error in errores %}
+            <li><strong>{{ error|escape }}</strong></li>
+        {% endfor %}
+        </ol>
+    </div>
+    {% endif %}
+
+<form class="form-horizontal" name=formul method="POST" action="{% url 'fecha_nueva' oTorneo.pk %}">
+  {% csrf_token %}
+
+
+  <div class="form-group">
+    <label for="nombreFecha" class="col-sm-2 control-label">Nombre Fecha</label>
+    <div class="col-sm-3">
+    <input type="text" class="form-control" id="nombreFecha" name="nombreFecha" placeholder="nombre" required value="{{nombreFecha}}" />
+    </div>
+  </div>
+      <div class="form-group">
+    <label for="datosJornada" class="col-sm-2 control-label">datosJornada</label>
+    <div class="col-sm-3">
+    <input type="text" class="form-control" id="datosJornada" name="datosJornada" placeholder="datos"  value="{{datosJornada}}" />
+    </div>
+  </div>
+      <div class="form-group">
+    <label for="torneo" class="col-sm-2 control-label">Torneo</label>
+    <div class="col-sm-3">
+    <input type="text" class="form-control" id="torneo" name="torneo" placeholder="torneo"  value="{{oTorneo.nombre}}" disabled/>
+    </div>
+  </div>
+
+
+  <button type="submit" class="save btn btn-success">Guardar</button>
+
+</form>
+
+
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+{% endblock %}
+
+{% block js %}
+
+
+{% endblock %}
+
+{% block js2 %}
+
+{% endblock %}

@@ -1,0 +1,16 @@
+<h1>Cursos de Platzi</h1>
+<p>
+    <a href="{% url "torneonuevo:new" %}">Agregar curso</a>
+</p>
+<ul>
+    {% for course in object_list %}
+        <li>
+            <p>{{ course.nombre }}</p>
+            <p>
+                <a href="{% url "torneo:detail" course.id %}">Ver</a> |
+                <a href="{% url "torneo:edit" course.id %}">Editar</a> |
+                <a href="{% url "torneo:delete" course.id %}">Borrar</a>
+            </p>
+        </li>
+    {% endfor %}
+</ul>
