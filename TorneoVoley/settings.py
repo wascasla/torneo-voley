@@ -76,19 +76,19 @@ WSGI_APPLICATION = 'TorneoVoley.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-    #'default': {
-    #    'ENGINE': 'django.db.backends.sqlite3',
-    #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    #}
-
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'voleydjango5',
-        'USER': 'postgres',
-        'PASSWORD': 'was',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+
+    #'default': {
+    #   'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #    'NAME': 'voleydjango5',
+    #    'USER': 'postgres',
+    #    'PASSWORD': 'was',
+    #    'HOST': '127.0.0.1',
+    #    'PORT': '5432',
+    #},
 }
 
 
@@ -114,9 +114,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-AR'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Buenos_Aires'
+
+DATE_INPUT_FORMATS = ('%d/%m/%Y')
 
 USE_I18N = True
 

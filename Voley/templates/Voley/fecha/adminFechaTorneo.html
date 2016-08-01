@@ -84,7 +84,7 @@
                                 <tbody>
                                 {% for p in partidos %}
                                     <tr>
-                                        <td>{{ p.fechaPartido }}</td>
+                                        <td>{{ p.fechaPartido|date:"SHORT_DATE_FORMAT"}}</td>
                                         <td>{{ p.horaPartido }}</td>
                                         <td>{{ p.local.nombreEquipo }}</td>
                                         <td>{{ p.golLocal }}</td>
