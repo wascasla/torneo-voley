@@ -164,41 +164,43 @@ def actualizarPosiciones(idFecha,eLocal):
         if partidos1:
             #recorro los partidos en los que esta el equipo para tomar los datos
             for p in partidos1:
-                valor = True
-                pj = pj + 1
-                setFavor = setFavor + p.golLocal
-                setContra = setContra + p.golVisitante
-                if p.golLocal == 2 and p.golVisitante == 0:
-                    pg = pg+1
-                #pregunto si gano 2 a 1
-                if p.golLocal == 2 and p.golVisitante == 1:
-                    pg = pg+1
-                #pregunto si es partido perdido a 0
-                if p.golLocal == 0 and p.golVisitante == 2:
-                    ppa0 = ppa0+1
-                #pregunto si es partido perdido a 1
-                if p.golLocal == 1 and p.golVisitante == 2:
-                    ppa1 = ppa1+1
+                if p.golVisitante!=None and p.golLocal!=None:
+                    valor = True
+                    pj = pj + 1
+                    setFavor = setFavor + p.golLocal
+                    setContra = setContra + p.golVisitante
+                    if p.golLocal == 2 and p.golVisitante == 0:
+                        pg = pg+1
+                    #pregunto si gano 2 a 1
+                    if p.golLocal == 2 and p.golVisitante == 1:
+                        pg = pg+1
+                    #pregunto si es partido perdido a 0
+                    if p.golLocal == 0 and p.golVisitante == 2:
+                        ppa0 = ppa0+1
+                    #pregunto si es partido perdido a 1
+                    if p.golLocal == 1 and p.golVisitante == 2:
+                        ppa1 = ppa1+1
 
 
         if partidos2:
             #recorro los partidos en los que esta el equipo para tomar los datos
             for p in partidos2:
-                valor = True
-                pj = pj + 1
-                setFavor = setFavor + p.golVisitante
-                setContra = setContra + p.golLocal
-                if p.golVisitante == 2 and p.golLocal == 0:
-                    pg = pg+1
-                #pregunto si gano 2 a 1
-                if p.golVisitante == 2 and p.golLocal == 1:
-                    pg = pg+1
-                #pregunto si es partido perdido a 0
-                if p.golVisitante == 0 and p.golLocal == 2:
-                    ppa0 = ppa0+1
-                #pregunto si es partido perdido a 1
-                if p.golVisitante == 1 and p.golLocal == 2:
-                    ppa1 = ppa1+1
+                if p.golVisitante!=None and p.golLocal!=None:
+                    valor = True
+                    pj = pj + 1
+                    setFavor = setFavor + p.golVisitante
+                    setContra = setContra + p.golLocal
+                    if p.golVisitante == 2 and p.golLocal == 0:
+                        pg = pg+1
+                    #pregunto si gano 2 a 1
+                    if p.golVisitante == 2 and p.golLocal == 1:
+                        pg = pg+1
+                    #pregunto si es partido perdido a 0
+                    if p.golVisitante == 0 and p.golLocal == 2:
+                        ppa0 = ppa0+1
+                    #pregunto si es partido perdido a 1
+                    if p.golVisitante == 1 and p.golLocal == 2:
+                        ppa1 = ppa1+1
 
     #pregunto si tiene algo para guardar los datos o para update
     #if partidos1 or partidos2:
