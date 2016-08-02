@@ -12,6 +12,48 @@ class Equipo(models.Model):
 
     def __str__(self):
         return self.nombreEquipo
+
+#tabla de Persona
+class Persona(models.Model):
+    apellido = models.CharField(max_length=50)
+    nombres = models.CharField(max_length=100)
+    fecha_nac = models.DateField()
+    domicilio = models.CharField(max_length=200)
+    telefono = models.CharField(max_length=15)
+    dni = models.IntegerField()
+    SEXO_CHOICES = (
+        ('M', 'MASCULINO'),
+        ('F', 'FEMENINO'),
+    )
+    sexo = models.CharField(max_length=1,choices=SEXO_CHOICES)
+
+    def __str__(self):
+        return self.nombres +' '+self.apellido
+
+#tabla de Jugador
+class Jugador(Persona):
+    equipo = models.ForeignKey('Equipo')
+    ESPECIALIDAD_CHOICES = (
+        ('CO', 'COLOCADOR'),
+        ('LI', 'LIBERO'),
+        ('CE', 'CENTRAL'),
+        ('AT', 'ATAQUE'),
+        ('OP', 'OPUESTO'),
+    )
+    especialidad = models.CharField(max_length=2,choices=ESPECIALIDAD_CHOICES,null=True)
+
+#tabla de Arbitro
+class Arbitro(Persona):
+    equipo = models.ForeignKey('Equipo')
+    ESPECIALIDAD_CHOICES = (
+        ('A1', 'PRIMER ARBITRO'),
+        ('A2', 'SEGUNDO ARBITRO'),
+        ('AN', 'ANOTADOR'),
+        ('AS', 'ASISTENTE'),
+        ('JU', 'JUEZ DE LINEA'),
+    )
+    especialidad = models.CharField(max_length=2,choices=ESPECIALIDAD_CHOICES,null=True)
+
 #tabla de Torneo
 
 class Torneo(models.Model):
