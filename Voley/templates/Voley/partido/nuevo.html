@@ -51,7 +51,7 @@
                                 <label for="fechaPartido" class="col-sm-2 control-label">Fecha</label>
 
                                 <div class="col-sm-10">
-                                    <input type="date" class="form-control" name="fechaPartido" id="fechaPartido" placeholder="fecha" value="{{ fechaPartido }}" >
+                                    <input type="date" class="form-control" name="fechaPartido" id="fechaPartido" placeholder="fecha" value="{{ fechaPartido|date:"Y-m-d" }}" >
                                 </div>
                             </div>
 
