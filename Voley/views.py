@@ -1,7 +1,7 @@
 from django.shortcuts import render,RequestContext
 from . models import *
 from django.db import connection
-import psycopg2, psycopg2.extras
+#import psycopg2, psycopg2.extras
 
 # Create your views here.
 from django.shortcuts import render,render_to_response
